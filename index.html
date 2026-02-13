@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCore IT - Professional PC Service & Maintenance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0a0e27;
+            --accent: #ff006e;
+            --dark: #0a0e27;
+            --light: #f0f4f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Animated Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch-anim 3s infinite;
+        }
+
+        @keyframes glitch-anim {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Neon Glow */
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--primary),
+                0 0 20px var(--primary),
+                0 0 30px var(--primary),
+                0 0 40px var(--primary);
+        }
+
+        .neon-border {
+            box-shadow: 
+                0 0 10px var(--primary),
+                0 0 20px var(--primary),
+                inset 0 0 10px rgba(0, 255, 157, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Service Cards */
+        .service-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 
+                0 10px 40px rgba(0, 255, 157, 0.3),
+                inset 0 0 20px rgba(0, 255, 157, 0.05);
+        }
+
+        /* PC Image Frames */
+        .pc-image {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .pc-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 157, 0.4), 
+                transparent);
+            transition: left 0.7s;
+        }
+
+        .pc-image:hover::before {
+            left: 100%;
+        }
+
+        /* Input Styles */
+        .tech-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            transition: all 0.3s;
+        }
+
+        .tech-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Button */
+        .tech-button {
+            background: linear-gradient(135deg, var(--primary), #00cc7e);
+            color: var(--dark);
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .tech-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .tech-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .tech-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.5);
+        }
+
+        /* Fade In Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* Corner Decorations */
+        .corner-decor {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary);
+        }
+
+        .corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+        .corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+    </style>
+</head>
+<body class="grid-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-opacity-90" style="background: rgba(10, 14, 39, 0.9);">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-cyan-400 rounded-lg flex items-center justify-center">
+                        <span class="text-2xl font-bold text-gray-900">SC</span>
+                    </div>
+                    <span class="text-2xl font-bold neon-text mono">SMARTCORE</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-lg">
+                    <a href="#home" class="hover:text-green-400 transition">Home</a>
+                    <a href="#services" class="hover:text-green-400 transition">Services</a>
+                    <a href="#gallery" class="hover:text-green-400 transition">Gallery</a>
+                    <a href="#contact" class="hover:text-green-400 transition">Contact</a>
+                </div>
+                <a href="#contact" class="tech-button px-6 py-2 rounded-lg mono text-sm relative z-10">
+                    GET SERVICE
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="fade-in-up delay-1">
+                        <span class="mono text-green-400 text-sm tracking-wider">[ PROFESSIONAL IT SOLUTIONS ]</span>
+                    </div>
+                    <h1 class="fade-in-up delay-2 text-6xl md:text-7xl font-bold leading-tight">
+                        <span class="glitch neon-text">SMARTCORE</span><br>
+                        <span class="text-gray-300">IT Company</span>
+                    </h1>
+                    <p class="fade-in-up delay-3 text-xl text-gray-400 leading-relaxed">
+                        Expert PC servicing, maintenance, and repairs. We keep your systems running at peak performance with cutting-edge solutions and dedicated support.
+                    </p>
+                    <div class="fade-in-up delay-4 flex flex-wrap gap-4">
+                        <a href="#contact" class="tech-button px-8 py-4 rounded-lg mono inline-block relative z-10">
+                            REQUEST SERVICE →
+                        </a>
+                        <a href="#services" class="px-8 py-4 rounded-lg border-2 border-green-400 hover:bg-green-400 hover:text-gray-900 transition mono">
+                            OUR SERVICES
+                        </a>
+                    </div>
+                    <div class="fade-in-up delay-5 grid grid-cols-3 gap-6 pt-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold neon-text">500+</div>
+                            <div class="text-sm text-gray-400 mono">Clients Served</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold neon-text">24/7</div>
+                            <div class="text-sm text-gray-400 mono">Support</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold neon-text">99%</div>
+                            <div class="text-sm text-gray-400 mono">Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative float">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-cyan-400 rounded-2xl blur-3xl opacity-30"></div>
+                        <img src="https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?w=800" alt="PC Tech" class="relative rounded-2xl shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="mono text-green-400 text-sm tracking-wider">[ OUR EXPERTISE ]</span>
+                <h2 class="text-5xl font-bold mt-4 mb-4">Professional Services</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Comprehensive PC solutions tailored to your needs</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card p-8 rounded-2xl relative">
+                    <div class="corner-decor corner-tl"></div>
+                    <div class="corner-decor corner-br"></div>
+                    <div class="text-5xl mb-4">🔧</div>
+                    <h3 class="text-2xl font-bold mb-3">Hardware Repair</h3>
+                    <p class="text-gray-400">Expert diagnosis and repair of all PC components including motherboards, GPUs, and power supplies.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-2xl relative">
+                    <div class="corner-decor corner-tl"></div>
+                    <div class="corner-decor corner-br"></div>
+                    <div class="text-5xl mb-4">🧹</div>
+                    <h3 class="text-2xl font-bold mb-3">Deep Cleaning</h3>
+                    <p class="text-gray-400">Professional cleaning services to remove dust, improve cooling, and extend your PC's lifespan.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-2xl relative">
+                    <div class="corner-decor corner-tl"></div>
+                    <div class="corner-decor corner-br"></div>
+                    <div class="text-5xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold mb-3">Performance Boost</h3>
+                    <p class="text-gray-400">Optimize your system for maximum speed with software tuning and hardware upgrades.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-2xl relative">
+                    <div class="corner-decor corner-tl"></div>
+                    <div class="corner-decor corner-br"></div>
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="text-2xl font-bold mb-3">Virus Removal</h3>
+                    <p class="text-gray-400">Complete malware removal and security setup to protect your valuable data.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-2xl relative">
+                    <div class="corner-decor corner-tl"></div>
+                    <div class="corner-decor corner-br"></div>
+                    <div class="text-5xl mb-4">💾</div>
+                    <h3 class="text-2xl font-bold mb-3">Data Recovery</h3>
+                    <p class="text-gray-400">Advanced data recovery solutions for failed drives and corrupted systems.</p>
+                </div>
+
+                <div class="service-card p-8 rounded-2xl relative">
+                    <div class="corner-decor corner-tl"></div>
+                    <div class="corner-decor corner-br"></div>
+                    <div class="text-5xl mb-4">🔄</div>
+                    <h3 class="text-2xl font-bold mb-3">System Upgrade</h3>
+                    <p class="text-gray-400">Hardware upgrades and system builds customized to your budget and requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PC Cleaning Gallery -->
+    <section id="gallery" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="mono text-green-400 text-sm tracking-wider">[ OUR WORK ]</span>
+                <h2 class="text-5xl font-bold mt-4 mb-4">PC Cleaning Gallery</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">See the transformation - before and after our professional cleaning service</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="pc-image rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=600" alt="PC Cleaning" class="w-full h-64 object-cover">
+                    <div class="p-4" style="background: rgba(0, 255, 157, 0.05);">
+                        <p class="mono text-sm text-green-400">Deep Component Cleaning</p>
+                    </div>
+                </div>
+
+                <div class="pc-image rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600" alt="PC Maintenance" class="w-full h-64 object-cover">
+                    <div class="p-4" style="background: rgba(0, 255, 157, 0.05);">
+                        <p class="mono text-sm text-green-400">Thermal Paste Application</p>
+                    </div>
+                </div>
+
+                <div class="pc-image rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1555680206-5cbe0bc6b39b?w=600" alt="PC Interior" class="w-full h-64 object-cover">
+                    <div class="p-4" style="background: rgba(0, 255, 157, 0.05);">
+                        <p class="mono text-sm text-green-400">Cable Management</p>
+                    </div>
+                </div>
+
+                <div class="pc-image rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1623677127641-79ce33ebc65a?w=600" alt="Custom Build" class="w-full h-64 object-cover">
+                    <div class="p-4" style="background: rgba(0, 255, 157, 0.05);">
+                        <p class="mono text-sm text-green-400">Custom PC Assembly</p>
+                    </div>
+                </div>
+
+                <div class="pc-image rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=600" alt="Diagnostic" class="w-full h-64 object-cover">
+                    <div class="p-4" style="background: rgba(0, 255, 157, 0.05);">
+                        <p class="mono text-sm text-green-400">Hardware Diagnostics</p>
+                    </div>
+                </div>
+
+                <div class="pc-image rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600" alt="Workstation" class="w-full h-64 object-cover">
+                    <div class="p-4" style="background: rgba(0, 255, 157, 0.05);">
+                        <p class="mono text-sm text-green-400">Professional Setup</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="mono text-green-400 text-sm tracking-wider">[ GET IN TOUCH ]</span>
+                <h2 class="text-5xl font-bold mt-4 mb-4">Request Service</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Fill out the form below and we'll get back to you within 24 hours</p>
+            </div>
+
+            <div class="service-card p-8 md:p-12 rounded-2xl relative">
+                <div class="corner-decor corner-tl"></div>
+                <div class="corner-decor corner-tr"></div>
+                <div class="corner-decor corner-bl"></div>
+                <div class="corner-decor corner-br"></div>
+
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm mono text-green-400 mb-2">FULL NAME *</label>
+                            <input type="text" id="name" required class="tech-input w-full px-4 py-3 rounded-lg text-white" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm mono text-green-400 mb-2">EMAIL ADDRESS *</label>
+                            <input type="email" id="email" required class="tech-input w-full px-4 py-3 rounded-lg text-white" placeholder="john@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm mono text-green-400 mb-2">PHONE NUMBER</label>
+                            <input type="tel" id="phone" class="tech-input w-full px-4 py-3 rounded-lg text-white" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-sm mono text-green-400 mb-2">SERVICE TYPE *</label>
+                            <select id="service" required class="tech-input w-full px-4 py-3 rounded-lg text-white">
+                                <option value="">Select Service</option>
+                                <option value="Hardware Repair">Hardware Repair</option>
+                                <option value="Deep Cleaning">Deep Cleaning</option>
+                                <option value="Performance Boost">Performance Boost</option>
+                                <option value="Virus Removal">Virus Removal</option>
+                                <option value="Data Recovery">Data Recovery</option>
+                                <option value="System Upgrade">System Upgrade</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm mono text-green-400 mb-2">ISSUE DESCRIPTION *</label>
+                        <textarea id="message" required rows="6" class="tech-input w-full px-4 py-3 rounded-lg text-white resize-none" placeholder="Describe your PC issue in detail..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm mono text-green-400 mb-2">PREFERRED CONTACT METHOD</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="contact_method" value="email" checked class="mr-2">
+                                <span>Email</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="contact_method" value="phone" class="mr-2">
+                                <span>Phone</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-4">
+                        <div id="formStatus" class="text-sm mono"></div>
+                        <button type="submit" class="tech-button px-8 py-4 rounded-lg mono relative z-10">
+                            SUBMIT REQUEST →
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="text-center p-6 service-card rounded-xl">
+                    <div class="text-3xl mb-3">📧</div>
+                    <div class="mono text-sm text-green-400">EMAIL</div>
+                    <div class="text-gray-300">info@smartcore-it.com</div>
+                </div>
+                <div class="text-center p-6 service-card rounded-xl">
+                    <div class="text-3xl mb-3">📞</div>
+                    <div class="mono text-sm text-green-400">PHONE</div>
+                    <div class="text-gray-300">+1 (555) 123-4567</div>
+                </div>
+                <div class="text-center p-6 service-card rounded-xl">
+                    <div class="text-3xl mb-3">⏰</div>
+                    <div class="mono text-sm text-green-400">HOURS</div>
+                    <div class="text-gray-300">Mon-Sat: 9AM-6PM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-green-400 border-opacity-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-cyan-400 rounded-lg flex items-center justify-center">
+                            <span class="text-lg font-bold text-gray-900">SC</span>
+                        </div>
+                        <span class="text-xl font-bold neon-text mono">SMARTCORE</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Professional PC service and maintenance solutions for businesses and individuals.</p>
+                </div>
+                <div>
+                    <h4 class="mono text-green-400 mb-4">SERVICES</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-green-400 transition">Hardware Repair</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Deep Cleaning</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Performance Boost</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Data Recovery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mono text-green-400 mb-4">COMPANY</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-green-400 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Our Team</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Testimonials</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mono text-green-400 mb-4">CONNECT</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-green-400 transition">Facebook</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-green-400 border-opacity-20 pt-8 text-center">
+                <p class="text-gray-400 text-sm mono">© 2024 SMARTCORE IT COMPANY. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submission with EmailJS (using Web3Forms as alternative)
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formStatus = document.getElementById('formStatus');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value,
+                contact_method: document.querySelector('input[name="contact_method"]:checked').value
+            };
+
+            // Show loading state
+            submitBtn.innerHTML = 'SENDING...';
+            submitBtn.disabled = true;
+            formStatus.innerHTML = '<span class="text-yellow-400">⏳ Processing your request...</span>';
+
+            try {
+                // Simulate email sending (replace with actual email service)
+                // For production, use services like EmailJS, Formspree, or Web3Forms
+                
+                // Example with fetch to a backend endpoint:
+                /*
+                const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                */
+
+                // Simulated success after 2 seconds
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Success message
+                formStatus.innerHTML = '<span class="text-green-400">✓ Request sent successfully! We\'ll contact you soon.</span>';
+                submitBtn.innerHTML = 'REQUEST SENT ✓';
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.innerHTML = 'SUBMIT REQUEST →';
+                    submitBtn.disabled = false;
+                    formStatus.innerHTML = '';
+                }, 3000);
+
+            } catch (error) {
+                // Error handling
+                formStatus.innerHTML = '<span class="text-red-400">✗ Error sending request. Please try again.</span>';
+                submitBtn.innerHTML = 'SUBMIT REQUEST →';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.float');
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and other elements
+        document.querySelectorAll('.service-card, .pc-image').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
